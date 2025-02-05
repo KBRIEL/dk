@@ -9,21 +9,24 @@ import java.util.List;
 
 @Entity
 @AllArgsConstructor
+
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private Long cliente;
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private ArrayList<Producto> productos ;
+    @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private ArrayList<Producto> productos = new ArrayList<Producto>() ;
     private Double adelanto = 0.0;
     private LocalDate emitido = LocalDate.now();
     private LocalDate entrega;
     private boolean envio = false;
     private double costoDeEnvio = 0.0;
     private double precio= 0.0;
+
     private String ubicacionDeEntrega = "";
 
     public Pedido() {

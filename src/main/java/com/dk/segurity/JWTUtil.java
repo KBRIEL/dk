@@ -15,14 +15,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JWTUtil implements Serializable {
-    @Autowired
-    private UserService service ;
+
 
 
     private static String  ACCESS_TOKEN_SECRET   = "4QHQ8lREFfYcaRHxdb9zURb2rf8e7Ud";
@@ -51,16 +52,18 @@ public class JWTUtil implements Serializable {
                     .parseClaimsJws(token)
                     .getBody();
             String email = claims.getSubject();
-            System.out.println("=========___________=============");
-            System.out.println(email);
+
            Usuario user = dao.getUsuarioByName(email);
-           System.out.println(user.getRol());
+
            //TODO return new UsernamePasswordAuthenticationToken(email,null, Collections.emptyList());
             List<GrantedAuthority> mutableList = new ArrayList<>();
             mutableList.add(new SimpleGrantedAuthority("ROLE_"+ user.getRol().toString()));
             return new UsernamePasswordAuthenticationToken(email,null, mutableList);
         }catch (JwtException e){
+            System.out.println(" ===== Sin acceso ====");
+
             return null;
+
         }
     }
 
