@@ -33,8 +33,8 @@ public class UserController {
 
     @GetMapping("/users")
     public List<UserDTO> getUsuarios(){
-        List<UserDTO> users = userService.getAll().stream().map(u-> new UserDTO(u)).collect(Collectors.toList());
-        return  users;
+
+        return  userService.getAll().stream().map(u-> new UserDTO(u)).collect(Collectors.toList());
     }
 
     @GetMapping("/{name}")

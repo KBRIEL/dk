@@ -30,6 +30,12 @@ public class DkApplication {
 			if(service.cantEmailsExist("drx4ss@gmail.com")<1){
 				service.crear(new Usuario("dkadmin", "drx4ss@gmail.com", Role.ADMIN, passwordEncoder.encode("admin")));
 			}
+			if(service.cantEmailsExist("pety@email.com")<1){
+				service.crear(new Usuario("pety", "pety@email.com", Role.USER, passwordEncoder.encode("pety")));
+			}
+			if(service.cantEmailsExist("agus@email.com")<1){
+				service.crear(new Usuario("agus", "agus@email.com", Role.ADMIN, passwordEncoder.encode("agus")));
+			}
 
 		};
 	}

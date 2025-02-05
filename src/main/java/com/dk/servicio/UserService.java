@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface UserService {
 
-    void crear(Usuario user);
+    Usuario crear(Usuario user);
     UserDetails loadUserByUsername(String username);
 
     Usuario register(Usuario user);

@@ -3,8 +3,7 @@ package com.dk.modelo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @AllArgsConstructor
@@ -20,10 +19,12 @@ public class Producto {
     private double precio;
     private double costo;
     private int descuento = 0;
-   /* @ManyToOne
-    private ArrayList lista;
 
-*/
+    @ManyToOne
+    @JoinColumn( name = "pedido_id")
+    private Pedido pedido;
+
+
 
     public Producto() {
 
